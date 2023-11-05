@@ -9,25 +9,10 @@ config = dotenv_values()
 # Retrieve the API_KEY value from the dictionary
 API_KEY = config.get('API_KEY')
 
-
-def find_current_weather(lat, lon):
-    """
-    Fetches current marine weather data based on latitude and longitude.
-
-    Args:
-        lat (float): Latitude value (-90 to 90 degrees).
-        lon (float): Longitude value (-180 to 180 degrees).
-
-    Returns:
-        None
-    """
-    # Construct the URL for the API request
+def prediction_forecast(lat, lon):
     base_url = f"http://api.worldweatheronline.com/premium/v1/marine.ashx?key={API_KEY}&format=xml&q={lat},{lon}"
-
-    # Send the API request
     response = requests.get(base_url)
-
-    # Check if the API request was successful (status code 200)
+    
     if response.status_code == 200:
         # Parse the XML response content
         root = ET.fromstring(response.content)
@@ -78,26 +63,108 @@ def find_current_weather(lat, lon):
             st.write(f"Sunrise: {sunrise}, Sunset: {sunset}")
             st.write("")
             
+
+    else:
+        st.error(f"Error fetching data. Status code: {response.status_code}")
+
+
+def get_current_weather_data(lat, lon):
+    # Construct the API URL for current weather data
+    base_url = f"http://api.worldweatheronline.com/premium/v1/weather.ashx?key={API_KEY}&format=xml&q={lat},{lon}"
+
+    # Send a GET request to the API
+    response = requests.get(base_url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the XML response
+        root = ET.fromstring(response.content)
+
+        # Extract current condition data
+        current_condition = root.find(".//current_condition")
+        observation_time = current_condition.find("observation_time").text
+        temp_C = current_condition.find("temp_C").text
+        temp_F = current_condition.find("temp_F").text
+        windspeedMiles = current_condition.find("windspeedMiles").text
+        windspeedKmph = current_condition.find("windspeedKmph").text
+        winddir16Point = current_condition.find("winddir16Point").text
+        weatherCode = current_condition.find("weatherCode").text
+        weatherDesc = current_condition.find("weatherDesc").text
+        humidity = current_condition.find("humidity").text
+        visibility = current_condition.find("visibility").text
+        visibilityMiles = current_condition.find("visibilityMiles").text
+        pressure = current_condition.find("pressure").text
+        pressureInches = current_condition.find("pressureInches").text
+        cloudcover = current_condition.find("cloudcover").text
+
+        # Extract weather information
+        weather = root.find(".//weather")
+        date = weather.find("date").text
+        uvIndex = weather.find("uvIndex").text
+
+        # Extract astronomy information
+        astronomy = root.find(".//astronomy")
+        sunrise = astronomy.find("sunrise").text
+        sunset = astronomy.find("sunset").text
+
+        # Display current condition data
+        st.subheader("Current Condition:")
+        st.write(f"- Observation Time: {observation_time} UTC")
+        st.write(f"- Temperature: {temp_C}°C ({temp_F}°F)")
+        st.write(f"- Wind Speed: {windspeedMiles} mph ({windspeedKmph} km/h)")
+        st.write(f"- Wind Direction (16-point): {winddir16Point}")
+        st.write(f"- Weather Code: {weatherCode}")
+        st.write(f"- Weather Description: {weatherDesc}")
+        st.write(f"- Humidity: {humidity}%")
+        st.write(f"- Visibility: {visibility} km ({visibilityMiles} miles)")
+        st.write(f"- Pressure: {pressure} mb ({pressureInches} inches)")
+        st.write(f"- Cloud Cover: {cloudcover}%")
+
+        # Display weather information
+        st.subheader("Weather Information:")
+        st.write(f"- Date: {date}")
+        st.write(f"- UV Index: {uvIndex}")
+
+        # Display astronomy information
+        st.subheader("Astronomy Information:")
+        st.write(f"- Sunrise: {sunrise}")
+        st.write(f"- Sunset: {sunset}")
     else:
         st.error(f"Error fetching data. Status code: {response.status_code}")
 
 def main():
     st.set_page_config(page_title="Nautical Navigator")
     st.title("Ahoy, matey! This here application be fer 'elpin' the Cap'n navigate the seas by givin' 'im the forecast an' wave data.")
-    lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
-    lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
     
-    if st.button("Submit"):
-        try:
-            lat = float(lat_input)
-            lon = float(lon_input)
-            if -90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0:
-                find_current_weather(lat, lon)
-            else:
-                st.warning("Please enter valid latitude 'n longitude values within the specified range.")
-        except ValueError:
-            st.warning("Please enter valid latitude 'n longitude values.")
+    # Radio button to select weather data option
+    data_option = st.radio("Select Weather Data Option", ["Current Weather Data", "Prediction Forecast"])
 
+    if data_option == "Current Weather Data":
+        lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
+        lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
+        if st.button("Submit"):
+            try:
+                lat = float(lat_input)
+                lon = float(lon_input)
+                if -90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0:
+                    get_current_weather_data(lat, lon)
+                else:
+                    st.warning("Please enter valid latitude 'n longitude values within the specified range.")
+            except ValueError:
+                st.warning("Please enter valid latitude 'n longitude values.")
+    else:
+        lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
+        lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
+        if st.button("Submit"):
+            try:
+                lat = float(lat_input)
+                lon = float(lon_input)
+                if -90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0:
+                    prediction_forecast(lat, lon)
+                else:
+                    st.warning("Please enter valid latitude 'n longitude values within the specified range.")
+            except ValueError:
+                st.warning("Please enter valid latitude 'n longitude values.")
 
 if __name__ == '__main__':
     main()
