@@ -4,6 +4,7 @@
 ![](https://img.shields.io/badge/Golang-1.17-yellow)
 ![](https://img.shields.io/badge/React-red)
 ![](https://img.shields.io/badge/MongoDB-Cloud-green)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2b92b6ad-0618-4479-84cc-de8053e9692e/deploy-status)](https://app.netlify.com/sites/nauticalnavigators/deploys)
 <!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/1715535d-5c1e-46d4-80e2-fba5816cf2ca/deploy-status)](https://app.netlify.com/sites/messengerv2/deploys) -->
 
 This is the codebase for our Hackathon project! We are building an app to *hackathon idea*
