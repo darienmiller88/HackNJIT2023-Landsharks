@@ -3,7 +3,7 @@
 ### Team Members:
 * Mohammad-Shamel Agha
 * Darrien Miller
-* 
+* Habeebat Jeneen Elwalily
 
 This is the codebase for our Hackathon project! We are building an app to *hackathon idea*
 
@@ -15,6 +15,7 @@ This is the codebase for our Hackathon project! We are building an app to *hacka
 * [Google Cloud](https://cloud.google.com/?hl=en)
 * [Netlify](https://bit.ly/3q4pcJz)
 * [Docker](https://www.docker.com/)
+* [Jupyter Notebook](https://jupyter.org/)
 
 ### Requirements
 * Clone the repository using `git clone https://github.com/darienmiller88/HackNJIT2023-Landsharks`
