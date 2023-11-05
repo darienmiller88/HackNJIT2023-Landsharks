@@ -5,11 +5,12 @@
 * Darien Miller
 * Habeebat Jeneen Elwalily
 
-This is the codebase for our Hackathon project! We are building an app to *hackathon idea*
 ### The Idea:
 * The original plan was to develop a weather forecast application to help navigate the seas and know when storms are approaching.
 * The weather prediction provides a 7-day forecast that includes the Wind Speed, Swell Data, visibility, and other information for increments of 3 hours.
 * The current weather function provides the current temperature, weather forecast, wind data, etc., and is expected to be updated every hour.
+
+Project is deployed on streamlit here: https://hacknjit2023-landsharks.streamlit.app/
 
 ### Built With
 
@@ -20,6 +21,7 @@ This is the codebase for our Hackathon project! We are building an app to *hacka
 * [Netlify](https://bit.ly/3q4pcJz)
 * [Docker](https://www.docker.com/)
 * [Jupyter Notebook](https://jupyter.org/)
+* [Maritime weather API](http://api.worldweatheronline.com)
 
 ### Requirements
 * Clone the repository using `git clone https://github.com/darienmiller88/HackNJIT2023-Landsharks`
