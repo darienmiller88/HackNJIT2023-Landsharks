@@ -19,8 +19,7 @@
         color: var(--primary);
 
         &:hover{
-            cursor: pointer;
-            padding: 60px 60px;
+            background-color: var(--primary-transparent);
             color: antiquewhite;
         }
     }
