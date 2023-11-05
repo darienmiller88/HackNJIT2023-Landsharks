@@ -40,6 +40,36 @@ def find_current_weather(lat, lon):
             min_temp_C = weather_elem.find(".//mintempC").text
             st.write(f"Date: {date}, Max Temp: {max_temp_C}°C, Min Temp: {min_temp_C}°C")
 
+            # Extract and display hourly weather data
+            hourly_data = weather_elem.findall(".//hourly")
+            for hour_data in hourly_data:
+                # Extract various weather attributes for each hour
+                time = hour_data.find("time").text
+                temp_C = hour_data.find(".//tempC").text
+                temp_F = hour_data.find(".//tempF").text
+                windspeed_Miles = hour_data.find(".//windspeedMiles").text
+                windspeed_Kmph = hour_data.find(".//windspeedKmph").text
+                weather_desc = hour_data.find(".//weatherDesc").text
+                humidity = hour_data.find(".//humidity").text
+                visibility = hour_data.find(".//visibility").text
+                pressure = hour_data.find(".//pressure").text
+                cloudcover = hour_data.find(".//cloudcover").text
+                sigHeight_m = hour_data.find(".//sigHeight_m").text
+                swellHeight_m = hour_data.find(".//swellHeight_m").text
+                swellHeight_ft = hour_data.find(".//swellHeight_ft").text
+                swellDir16Point = hour_data.find(".//swellDir16Point").text
+                uvIndex = hour_data.find(".//uvIndex").text
+                winddir16Point = hour_data.find(".//winddir16Point").text
+                weatherCode = hour_data.find(".//weatherCode").text
+
+                # Display hourly weather data
+                st.write(f"Time: {time}, Temp: {temp_C}°C ({temp_F}°F), Wind Speed: {windspeed_Miles} mph ({windspeed_Kmph} km/h),  Wind Direction (16-point): {winddir16Point}")
+                st.write(f"Weather Code: {weatherCode}, Weather: {weather_desc}")
+                st.write(f"Humidity: {humidity}%, Visibility: {visibility} km, Pressure: {pressure} mb, Cloud Cover: {cloudcover}%")
+                st.write(f"Significant Wave Height: {sigHeight_m} meters, Swell Height: {swellHeight_m} meters ({swellHeight_ft} feet), Swell Direction: {swellDir16Point}")
+                st.write(f"UV Index: {uvIndex}")
+                st.write("")  # Add an empty line for better readability
+
     else:
         st.error(f"Error fetching data. Status code: {response.status_code}")
 
