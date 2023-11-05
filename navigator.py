@@ -77,15 +77,16 @@ def prediction_forecast(lat, lon):
 def get_current_weather_data(lat, lon):
     # Construct the API URL for current weather data
     base_url = f"http://api.worldweatheronline.com/premium/v1/weather.ashx?key={API_KEY}&format=xml&q={lat},{lon}"
-
+    
     # Send a GET request to the API
     response = requests.get(base_url)
-
+    
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
+        
         # Parse the XML response
         root = ET.fromstring(response.content)
-
+        
         # Extract current condition data
         current_condition = root.find(".//current_condition")
         observation_time = current_condition.find("observation_time").text
@@ -102,17 +103,17 @@ def get_current_weather_data(lat, lon):
         pressure = current_condition.find("pressure").text
         pressureInches = current_condition.find("pressureInches").text
         cloudcover = current_condition.find("cloudcover").text
-
+        
         # Extract weather information
         weather = root.find(".//weather")
         date = weather.find("date").text
         uvIndex = weather.find("uvIndex").text
-
+       
         # Extract astronomy information
         astronomy = root.find(".//astronomy")
         sunrise = astronomy.find("sunrise").text
         sunset = astronomy.find("sunset").text
-
+        
         # Display current condition data
         st.subheader("Current Condition:")
         st.write(f"- Observation Time: {observation_time} UTC")
@@ -125,12 +126,12 @@ def get_current_weather_data(lat, lon):
         st.write(f"- Visibility: {visibility} km ({visibilityMiles} miles)")
         st.write(f"- Pressure: {pressure} mb ({pressureInches} inches)")
         st.write(f"- Cloud Cover: {cloudcover}%")
-
+       
         # Display weather information
         st.subheader("Weather Information:")
         st.write(f"- Date: {date}")
         st.write(f"- UV Index: {uvIndex}")
-
+        
         # Display astronomy information
         st.subheader("Astronomy Information:")
         st.write(f"- Sunrise: {sunrise}")
@@ -146,8 +147,8 @@ def main():
     data_option = st.radio("Select Weather Data Option", ["Current Weather Data", "Prediction Forecast"])
 
     if data_option == "Current Weather Data":
-        lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
-        lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
+        lat_input = st.text_input("Enter yer latitude: (-90 to 90)")
+        lon_input = st.text_input("Enter yer longitude: (-180 to 180)")
         if st.button("Submit"):
             try:
                 lat = float(lat_input)
@@ -159,8 +160,8 @@ def main():
             except ValueError:
                 st.warning("Please enter valid latitude 'n longitude values.")
     else:
-        lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
-        lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
+        lat_input = st.text_input("Enter yer latitude: (-90 to 90)")
+        lon_input = st.text_input("Enter yer longitude: (-180 to 180)")
         if st.button("Submit"):
             try:
                 lat = float(lat_input)
