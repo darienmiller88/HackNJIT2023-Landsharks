@@ -12,10 +12,10 @@
   <div class="title">Nautical Navigator!</div>
   <div class="weather-info lat-long-wrapper">
       <div class="latitude">
-        Latitude: {latitude}
+        Latitude: {latitude}&deg;
       </div>
       <div class="longitude">
-        Longitude: {longtitude} 
+        Longitude: {longtitude}&deg;
       </div>
   </div>
   <div class="cards">
@@ -51,6 +51,10 @@
 
     .latitude{
       margin-right: 20px;
+
+      span{
+        font-size: 20px;
+      }
     }
   }
 
