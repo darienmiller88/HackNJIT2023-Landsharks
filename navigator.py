@@ -70,6 +70,23 @@ def find_current_weather(lat, lon):
                 st.write(f"UV Index: {uvIndex}")
                 st.write("")  # Add an empty line for better readability
 
+            # Extract and display astronomy data (sunrise and sunset)
+            astronomy_data = weather_elem.find(".//astronomy")
+            sunrise = astronomy_data.find("sunrise").text
+            sunset = astronomy_data.find("sunset").text
+            
+            st.write(f"Sunrise: {sunrise}, Sunset: {sunset}")
+            st.write("")
+            
+            # Extract and display tide data (tide type)
+            tide_data = weather_elem.find(".//tide")
+            if tide_data is not None:
+                tide_type = tide_data.find(".//tide_type").text
+                st.write(f"Tide Type: {tide_type}")
+                st.write("")
+            else:
+                st.warning("No tide data available")
+                st.write("")
     else:
         st.error(f"Error fetching data. Status code: {response.status_code}")
 
