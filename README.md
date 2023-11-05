@@ -20,16 +20,10 @@ This is the codebase for our Hackathon project! We are building an app to *hacka
 
 ### Requirements
 * Clone the repository using `git clone https://github.com/darienmiller88/HackNJIT2023-Landsharks`
-* Migrate the necessary information to your local `.env` as described in the `.env_sample` file
-* Run `go build` to create a root level `MessengerV2.exe` file, and then run `.\MessengerV2` to run the executable. If an executable is not needed, simply input `go run main.go` instead, or `.\fresh` to enable a server restart on change.
-* `cd` into the `client` folder, and run `npm run dev` to the Vite server, which should be on port 3000
+* Assuming that Python is installed, run pip install streamlit, requests, and python-dotenv
+* Run `streamlit run navigator.py` to run the program
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Feel free to leave suggestions as well, I'm always looking for ways to improve!
+### Known Issues
+* There is a range issue when plugging in the latitude and longitude
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
