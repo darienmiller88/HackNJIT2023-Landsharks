@@ -17,6 +17,7 @@
 
         border: 2px solid var(--primary);
         color: var(--primary);
+        background-color: rgba(250, 235, 215, 0.189);
 
         &:hover{
             background-color: var(--primary-transparent);

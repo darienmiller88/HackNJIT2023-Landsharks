@@ -9,7 +9,7 @@
 </script>
 
 <main>
-  <div class="title">Nautical Navigator</div>
+  <div class="title">Nautical Navigator!</div>
   <div class="weather-info lat-long-wrapper">
       <div class="latitude">
         Latitude: {latitude}
