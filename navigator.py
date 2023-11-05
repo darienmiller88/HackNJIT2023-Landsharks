@@ -78,20 +78,12 @@ def find_current_weather(lat, lon):
             st.write(f"Sunrise: {sunrise}, Sunset: {sunset}")
             st.write("")
             
-            # Extract and display tide data (tide type)
-            tide_data = weather_elem.find(".//tide")
-            if tide_data is not None:
-                tide_type = tide_data.find(".//tide_type").text
-                st.write(f"Tide Type: {tide_type}")
-                st.write("")
-            else:
-                st.warning("No tide data available")
-                st.write("")
     else:
         st.error(f"Error fetching data. Status code: {response.status_code}")
 
 def main():
-    st.header("Nautical Navigator")
+    st.set_page_config(page_title="Nautical Navigator")
+    st.title("Ahoy, matey! This here application be fer 'elpin' the Cap'n navigate the seas by givin' 'im the forecast an' wave data.")
     lat_input = st.text_input("Enter yer latitude: (-90.000 to 90.000)")
     lon_input = st.text_input("Enter yer longitude: (-180.000 to 180.000)")
     
@@ -102,9 +94,9 @@ def main():
             if -90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0:
                 find_current_weather(lat, lon)
             else:
-                st.warning("Please enter valid latitude and longitude values within the specified range.")
+                st.warning("Please enter valid latitude 'n longitude values within the specified range.")
         except ValueError:
-            st.warning("Please enter valid latitude and longitude values.")
+            st.warning("Please enter valid latitude 'n longitude values.")
 
 
 if __name__ == '__main__':
