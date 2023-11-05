@@ -1,22 +1,20 @@
-# Project Title
+# Project Title: Nautical Navigators
 
-![](https://img.shields.io/badge/made%20by-DarienMiller-blue)
-![](https://img.shields.io/badge/Golang-1.17-yellow)
-![](https://img.shields.io/badge/React-red)
-![](https://img.shields.io/badge/MongoDB-Cloud-green)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2b92b6ad-0618-4479-84cc-de8053e9692e/deploy-status)](https://app.netlify.com/sites/nauticalnavigators/deploys)
-<!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/1715535d-5c1e-46d4-80e2-fba5816cf2ca/deploy-status)](https://app.netlify.com/sites/messengerv2/deploys) -->
+### Team Members:
+* Mohammad-Shamel Agha
+* Darrien Miller
+* 
 
 This is the codebase for our Hackathon project! We are building an app to *hackathon idea*
 
 ### Built With
 
 * [Svelte](https://reactjs.org)
-* [Fiber](https://github.com/gofiber/fiber)
-* [Vite](https://vitejs.dev/)
-* [PostgreSQL](https://www.postgresql.org/)
+* [Python](https://www.python.org/)
+* [Streamlit](https://streamlit.io/)
+* [Google Cloud](https://cloud.google.com/?hl=en)
 * [Netlify](https://bit.ly/3q4pcJz)
-* [Cloundinary](https://cloudinary.com/)
+* [Docker](https://www.docker.com/)
 
 ### Requirements
 * Clone the repository using `git clone https://github.com/darienmiller88/HackNJIT2023-Landsharks`
@@ -25,5 +23,6 @@ This is the codebase for our Hackathon project! We are building an app to *hacka
 
 ### Known Issues
 * There is a range issue when plugging in the latitude and longitude
+* We tried to implement our project on Google App Engine, but there was permission issues between it and Docker
 
 <p align="right">(<a href="#top">back to top</a>)</p>
