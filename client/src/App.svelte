@@ -9,8 +9,15 @@
 </script>
 
 <main>
-  <div class="title">Nautical Navigator</div>
-  <div class="weather-info lat-long">Latitude: {latitude} Longitude: {longtitude} </div>
+  <div class="title">Nautical Navigator!</div>
+  <div class="weather-info lat-long-wrapper">
+      <div class="latitude">
+        Latitude: {latitude}&deg;
+      </div>
+      <div class="longitude">
+        Longitude: {longtitude}&deg;
+      </div>
+  </div>
   <div class="cards">
     <Card title={"Wind Speed"} value={windSpeed}/>
     <Card title={"Wind Direction"} value={windDirection}/>
@@ -31,10 +38,24 @@
     color: var(--primary);
   }
 
-  .lat-long{
+  .lat-long-wrapper{
+    display: flex;
+    justify-content: space-between;
     font-size: 30px;
     text-align: center;
+
+    margin: auto;
     margin-bottom: 20px;
+
+    width: fit-content;
+
+    .latitude{
+      margin-right: 20px;
+
+      span{
+        font-size: 20px;
+      }
+    }
   }
 
   .weather-info{

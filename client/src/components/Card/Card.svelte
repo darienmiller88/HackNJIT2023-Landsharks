@@ -17,10 +17,10 @@
 
         border: 2px solid var(--primary);
         color: var(--primary);
+        background-color: rgba(250, 235, 215, 0.189);
 
         &:hover{
-            cursor: pointer;
-            padding: 60px 60px;
+            background-color: var(--primary-transparent);
             color: antiquewhite;
         }
     }
