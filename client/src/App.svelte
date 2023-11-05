@@ -1,47 +1,54 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import Card from "./components/Card/Card.svelte";
+  let latitude: Number = 39.8
+  let longtitude: Number = 41.5
+  let windSpeed: Number = 20
+  let waveHeight: Number = 12
+  let windDirection: string = "Northeast"
+
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+  <div class="title">Nautical Navigator</div>
+  <div class="weather-info lat-long">Latitude: {latitude} Longitude: {longtitude} </div>
+  <div class="cards">
+    <Card title={"Wind Speed"} value={windSpeed}/>
+    <Card title={"Wind Direction"} value={windDirection}/>
+    <Card title={"Wave Height"} value={waveHeight}/>
+
   </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+  <!-- <div class="weather-info">Wind Speed: </div>
+  <div class="weather-info">Wind Direction: </div>
+  <div class="weather-info">Wave Height: </div> -->
 </main>
 
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+<style lang="scss">
+  .title{
+    text-align: center;
+    font-size: 50px;
+    padding: 20px;
+    
+    color: var(--primary);
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .lat-long{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+
+  .weather-info{
+    font-size: 20px;
+    padding: 10px 20px;
+    color: var(--primary);
   }
-  .read-the-docs {
-    color: #888;
+
+  .cards{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+
+    width: 60vw;
   }
+  
 </style>
