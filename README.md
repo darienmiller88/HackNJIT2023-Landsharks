@@ -3,7 +3,7 @@
 ### Team Members:
 * Mohammad-Shamel Agha
 * Darien Miller
-* 
+* Habeebat Jeneen Elwalily
 
 This is the codebase for our Hackathon project! We are building an app to *hackathon idea*
 
