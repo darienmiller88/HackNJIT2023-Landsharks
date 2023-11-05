@@ -10,11 +10,15 @@ config = dotenv_values()
 API_KEY = config.get('API_KEY')
 
 def prediction_forecast(lat, lon):
+    # Construct the API URL for marine weather data
     base_url = f"http://api.worldweatheronline.com/premium/v1/marine.ashx?key={API_KEY}&format=xml&q={lat},{lon}"
+
+    # Send a GET request to the API
     response = requests.get(base_url)
-    
+
+    # Check if the request was successful (status code 200)
     if response.status_code == 200:
-        # Parse the XML response content
+        # Parse the XML response
         root = ET.fromstring(response.content)
 
         # Iterate over each 'weather' element in the XML response
@@ -23,7 +27,11 @@ def prediction_forecast(lat, lon):
             date = weather_elem.find("date").text
             max_temp_C = weather_elem.find(".//maxtempC").text
             min_temp_C = weather_elem.find(".//mintempC").text
-            st.write(f"Date: {date}, Max Temp: {max_temp_C}°C, Min Temp: {min_temp_C}°C")
+
+            # Display date and temperature information
+            st.subheader(f"Weather Forecast for {date}:")
+            st.write(f"- Max Temperature: {max_temp_C}°C")
+            st.write(f"- Min Temperature: {min_temp_C}°C")
 
             # Extract and display hourly weather data
             hourly_data = weather_elem.findall(".//hourly")
@@ -48,22 +56,20 @@ def prediction_forecast(lat, lon):
                 weatherCode = hour_data.find(".//weatherCode").text
 
                 # Display hourly weather data
-                st.write(f"Time: {time}, Temp: {temp_C}°C ({temp_F}°F), Wind Speed: {windspeed_Miles} mph ({windspeed_Kmph} km/h),  Wind Direction (16-point): {winddir16Point}")
-                st.write(f"Weather Code: {weatherCode}, Weather: {weather_desc}")
-                st.write(f"Humidity: {humidity}%, Visibility: {visibility} km, Pressure: {pressure} mb, Cloud Cover: {cloudcover}%")
-                st.write(f"Significant Wave Height: {sigHeight_m} meters, Swell Height: {swellHeight_m} meters ({swellHeight_ft} feet), Swell Direction: {swellDir16Point}")
-                st.write(f"UV Index: {uvIndex}")
-                st.write("")  # Add an empty line for better readability
-
-            # Extract and display astronomy data (sunrise and sunset)
-            astronomy_data = weather_elem.find(".//astronomy")
-            sunrise = astronomy_data.find("sunrise").text
-            sunset = astronomy_data.find("sunset").text
-            
-            st.write(f"Sunrise: {sunrise}, Sunset: {sunset}")
-            st.write("")
-            
-
+                st.subheader(f"Hourly Forecast for {date}, {time}:")
+                st.write(f"- Temperature: {temp_C}°C ({temp_F}°F)")
+                st.write(f"- Wind Speed: {windspeed_Miles} mph ({windspeed_Kmph} km/h)")
+                st.write(f"- Wind Direction (16-point): {winddir16Point}")
+                st.write(f"- Weather Code: {weatherCode}")
+                st.write(f"- Weather Description: {weather_desc}")
+                st.write(f"- Humidity: {humidity}%")
+                st.write(f"- Visibility: {visibility} km")
+                st.write(f"- Pressure: {pressure} mb")
+                st.write(f"- Cloud Cover: {cloudcover}%")
+                st.write(f"- Significant Wave Height: {sigHeight_m} meters")
+                st.write(f"- Swell Height: {swellHeight_m} meters ({swellHeight_ft} feet)")
+                st.write(f"- Swell Direction: {swellDir16Point}")
+                st.write(f"- UV Index: {uvIndex}")
     else:
         st.error(f"Error fetching data. Status code: {response.status_code}")
 
